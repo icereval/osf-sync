@@ -42,7 +42,7 @@ install:
   # target Python version and architecture
   - "%CMD_IN_ENV% pip install -r requirements.txt"
 
-script:
+test_script:
   - "%CMD_IN_ENV% flake8 osfoffline
   - "%CMD_IN_ENV% py.test -v -s tests
 
