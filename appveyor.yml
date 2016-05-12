@@ -56,12 +56,12 @@ before_test:
   - ECHO "Filesystem project:"
   - ps: "ls"
 
-  - |
+  - cmd: |
     SET WIN_SDK_ROOT=C:\Program Files\Microsoft SDKs\Windows
     SET WIN_WDK=c:\Program Files (x86)\Windows Kits\10\Include\wdf
 
-    ECHO Extract the major and minor versions, and allow for the minor version to be
-    ECHO more than 9.  This requires the version number to have two dots in it.
+    :: Extract the major and minor versions, and allow for the minor version to be
+    :: more than 9.  This requires the version number to have two dots in it.
     SET MAJOR_PYTHON_VERSION=%PYTHON_VERSION:~0,1%
     IF "%PYTHON_VERSION:~3,1%" == "." (
         SET MINOR_PYTHON_VERSION=%PYTHON_VERSION:~2,1%
@@ -69,8 +69,8 @@ before_test:
         SET MINOR_PYTHON_VERSION=%PYTHON_VERSION:~2,2%
     )
 
-    ECHO Based on the Python version, determine what SDK version to use, and whether
-    ECHO to set the SDK for 64-bit.
+    :: Based on the Python version, determine what SDK version to use, and whether
+    :: to set the SDK for 64-bit.
     IF %MAJOR_PYTHON_VERSION% == 2 (
         SET WINDOWS_SDK_VERSION="v7.0"
         SET SET_SDK_64=Y
@@ -82,7 +82,7 @@ before_test:
             ) ELSE (
                 SET SET_SDK_64=N
                 IF EXIST "%WIN_WDK%" (
-                    ECHO See: https://connect.microsoft.com/VisualStudio/feedback/details/1610302/
+                    :: See: https://connect.microsoft.com/VisualStudio/feedback/details/1610302/
                     REN "%WIN_WDK%" 0wdf
                 )
             )
