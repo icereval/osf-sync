@@ -19,9 +19,15 @@ environment:
     #   PYTHON_VERSION: "3.4.x" # currently 3.4.3
     #   PYTHON_ARCH: "64"
 
+# build:
+#     parallel: true
+
 install:
   - ECHO "Filesystem root:"
   - ps: "ls \"C:/\""
+
+  - ECHO "Filesystem project:"
+  - ps: "ls"
 
   - ECHO "Installed SDKs:"
   - ps: "ls \"C:/Program Files/Microsoft SDKs/Windows\""
@@ -101,8 +107,12 @@ before_test:
     )
 
 test_script:
+  - ECHO "flake8:"
   - flake8 osfoffline
+  - ECHO "py.test:"
   - py.test -v -s tests
+
+build: off
 
 notifications:
   - provider: Email
