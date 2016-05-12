@@ -49,7 +49,7 @@ install:
   # target Python version and architecture
   - pip install -r requirements.txt"
 
-before_script:
+before_test:
   - |
     SET WIN_SDK_ROOT=C:\Program Files\Microsoft SDKs\Windows
     SET WIN_WDK=c:\Program Files (x86)\Windows Kits\10\Include\wdf
