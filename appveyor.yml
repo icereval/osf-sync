@@ -26,9 +26,6 @@ install:
   - ECHO "Filesystem root:"
   - ps: "ls \"C:/\""
 
-  - ECHO "Filesystem project:"
-  - ps: "ls"
-
   - ECHO "Installed SDKs:"
   - ps: "ls \"C:/Program Files/Microsoft SDKs/Windows\""
 
@@ -56,7 +53,12 @@ install:
   - pip install -r requirements.txt"
 
 before_test:
+  - ECHO "Filesystem project:"
+  - ps: "ls"
+
   - |
+    @ECHO OFF
+
     SET WIN_SDK_ROOT=C:\Program Files\Microsoft SDKs\Windows
     SET WIN_WDK=c:\Program Files (x86)\Windows Kits\10\Include\wdf
 
